@@ -1,7 +1,19 @@
 <div class="main">
  <div class="header">
     <div class="header_content">
-        <input style="width: 500px;" placeholder="Введите название фильма" type="text" pInputText [(ngModel)]="value" />
+        <div class="header_selector">
+            <input style="width: 500px;" placeholder="Введите название фильма" type="text" pInputText [(ngModel)]="value" />
+            <div class="listbox">
+                <p-listbox [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" [listStyle]="{ 'max-height': '250px' }" [style]="{ width: '500px' }">
+                    <ng-template let-country pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                            <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" style="width: 18px"/>
+                            <div>{{ country.name }}</div>
+                        </div>
+                    </ng-template>
+                </p-listbox>
+            </div>
+        </div>
         <div>
             <p-button label="Топ 100 фильмов" styleClass="p-button-text"></p-button>
             <p-button label="Вернуться на главную" styleClass="p-button-success p-button-text"></p-button>
@@ -12,7 +24,7 @@
     <p-table 
         [columns]="cols" 
         [value]="products" 
-        [tableStyle]="{ 'width': '90%', 'margin': '0px auto', 'margin-top': '1rem' }"
+        [tableStyle]="{ 'width': '88%', 'margin': '0px auto', 'margin-top': '1rem' }"
         >
         <ng-template pTemplate="header" let-columns>
             <tr>
@@ -31,3 +43,4 @@
     </p-table>
  </div>
 </div>
+

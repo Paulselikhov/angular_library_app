@@ -11,6 +11,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { ListboxModule } from 'primeng/listbox';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { TableModule } from 'primeng/table';
     FormsModule,
     ButtonModule,
     TableModule,
+    ListboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

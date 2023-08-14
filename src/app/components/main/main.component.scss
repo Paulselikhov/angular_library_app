@@ -1,0 +1,41 @@
+.main{
+    padding: 0;
+    margin: 0;
+    background-color: rgb(253, 223, 223);
+    .header{
+        border-bottom: none;
+        padding: 1%;
+
+        .header_content{
+            width: 90%;
+            margin: 0px auto;
+            
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    
+    
+    .content{
+        border-top: 1px solid black;
+        height: 88vh;
+
+        .content_table{
+            width: 90%;
+            margin: 0px auto;
+            table{
+                width: 100%;
+                border: 1px solid #000;
+
+            tr{
+                border-bottom: 1px solid #000;
+                
+                td{
+                    padding: 3px;
+                }
+            }
+            }
+            
+        }
+    }
+}

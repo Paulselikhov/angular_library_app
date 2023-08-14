@@ -1,0 +1,33 @@
+<div class="main">
+ <div class="header">
+    <div class="header_content">
+        <input style="width: 500px;" placeholder="Введите название фильма" type="text" pInputText [(ngModel)]="value" />
+        <div>
+            <p-button label="Топ 100 фильмов" styleClass="p-button-text"></p-button>
+            <p-button label="Вернуться на главную" styleClass="p-button-success p-button-text"></p-button>
+        </div>
+    </div>
+ </div>
+ <div class="content">
+    <p-table 
+        [columns]="cols" 
+        [value]="products" 
+        [tableStyle]="{ 'width': '90%', 'margin': '0px auto', 'margin-top': '1rem' }"
+        >
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{ col.header }}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td *ngFor="let col of columns">
+                    {{ rowData[col.field] }}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+ </div>
+</div>

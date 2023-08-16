@@ -19,6 +19,7 @@ export class MainComponent {
   test2(event:LazyLoadEvent){
     const {page} = pageCalc(event.first!, event.rows!);
     this.filmsService.getTop250Films(page).subscribe( (res) => {
+      res.films.map((i:any, index:any) => i.index = event.first + index)
       this.films = res.films
     })  
   }
@@ -45,12 +46,13 @@ export class MainComponent {
     { posterUrlPreview: '5', nameRu: 'Россия', countries: [], code: 'RUS', genres: [{"genre": "фантастика"}], rating: '3', ratingVoteCount: '435345'},
   ]
   cols = [
+    { header: '№'},
     { header: 'Постер'},
     { header: 'Название'},
     //{ header: 'Английское'},
     { header: 'Страна'},
-    { header: 'Год'},
     { header: 'Жанр'},
+    { header: 'Год выпуска'},
     { header: 'Продолжительность'},
     { header: 'Рейтинг'},
   ]

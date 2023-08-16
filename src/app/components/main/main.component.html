@@ -31,7 +31,7 @@
         [rows]="5"
         [tableStyle]=""
         [rowsPerPageOptions]="[5, 10, 15]"
-        [totalRecords]="250"
+        [totalRecords]="64"
         [lazy]="true"
         (onLazyLoad)="test2($event)"
         >
@@ -44,14 +44,15 @@
         </ng-template>
         <ng-template pTemplate="body" let-data let-columns="columns">
             <tr>
+                <td>{{data.index}}</td>
                 <td><img [src]="data.posterUrlPreview" width="50px" height="70px" alt="" style="vertical-align: middle"></td>
                 <td>{{ data.nameRu }}</td>
                 <!-- <td>{{ data.nameEn }}</td> -->
                 <td>{{ data.countries[0]?.country }}</td>
-                <td>{{ data.year }}</td>
                 <td><span *ngFor="let g of data.genres">{{g.genre}} </span></td>
+                <td>{{ data.year }}</td>
                 <td>{{ data.filmLength }}</td>
-                <td ><span pTooltip="{{data.ratingVoteCount}} чел. проголосовало">{{ data.rating }}</span></td>
+                <td ><span pTooltip="{{data.ratingVoteCount}} человек проголосовало" tooltipPosition="left">{{ data.rating }}</span></td>
             </tr>
         </ng-template>
     </p-table>

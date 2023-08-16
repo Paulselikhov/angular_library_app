@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FilmsService } from '../services/films.service';
 
 @Component({
   selector: 'app-main',
@@ -6,6 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
+
+  constructor(private filmsService: FilmsService) {}
+
+  test(){
+    this.filmsService.getTop250Films().subscribe( (res) => {
+      debugger
+    })
+  }
   value = null
   sortField = 'name'
   sortOrder = 1

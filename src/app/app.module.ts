@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FilmComponent } from './components/film/film.component';
@@ -24,6 +24,8 @@ import { ListboxModule } from 'primeng/listbox';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+
     DataViewModule,
     InputTextModule,
     FormsModule,

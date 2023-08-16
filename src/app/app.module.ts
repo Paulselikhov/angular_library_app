@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { ListboxModule } from 'primeng/listbox';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { ListboxModule } from 'primeng/listbox';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-
+    TooltipModule,
     DataViewModule,
     InputTextModule,
     FormsModule,

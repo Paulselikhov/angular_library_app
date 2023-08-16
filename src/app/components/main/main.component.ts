@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FilmsService } from '../services/films.service';
+import { pageCalc } from 'src/app/common/virtualScrollerUtils';
+import { LazyLoadEvent } from 'primeng/api';
 
 @Component({
   selector: 'app-main',
@@ -7,28 +9,71 @@ import { FilmsService } from '../services/films.service';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
-
+  public first: number = 1
   constructor(private filmsService: FilmsService) {}
 
   test(){
-    this.filmsService.getTop250Films().subscribe( (res) => {
-      debugger
-    })
+    
   }
-  value = null
-  sortField = 'name'
-  sortOrder = 1
-  products = [
-    { foto: '5', name: 'Россия', code: 'RUS', test: '3', test2: '3'},
-    { foto: '6', name: 'Россия', code: 'RUS', test: '3', test2: '3'}
+
+  test2(event:LazyLoadEvent){
+    const {page} = pageCalc(event.first!, event.rows!);
+    this.filmsService.getTop250Films(page).subscribe( (res) => {
+      this.films = res.films
+    })  
+  }
+
+  films = [
+    { posterUrlPreview: '5', nameRu: 'Россия', countries: [], code: 'RUS', genres: [{"genre": "фантастика"}], rating: '3', ratingVoteCount: '435345'},
+    { posterUrlPreview: '5', nameRu: 'Россия', countries: [], code: 'RUS', genres: [{"genre": "фантастика"}], rating: '3', ratingVoteCount: '435345'},
+    { posterUrlPreview: '5', nameRu: 'Россия', countries: [], code: 'RUS', genres: [{"genre": "фантастика"}], rating: '3', ratingVoteCount: '435345'},
+
+    { posterUrlPreview: '5', nameRu: 'Россия', countries: [], code: 'RUS', genres: [{"genre": "фантастика"}], rating: '3', ratingVoteCount: '435345'},
+    { posterUrlPreview: '5', nameRu: 'Россия', countries: [], code: 'RUS', genres: [{"genre": "фантастика"}], rating: '3', ratingVoteCount: '435345'},
+    { posterUrlPreview: '5', nameRu: 'Россия', countries: [], code: 'RUS', genres: [{"genre": "фантастика"}], rating: '3', ratingVoteCount: '435345'},
+
+    { posterUrlPreview: '5', nameRu: 'Россия', countries: [], code: 'RUS', genres: [{"genre": "фантастика"}], rating: '3', ratingVoteCount: '435345'},
+    { posterUrlPreview: '5', nameRu: 'Россия', countries: [], code: 'RUS', genres: [{"genre": "фантастика"}], rating: '3', ratingVoteCount: '435345'},
+    { posterUrlPreview: '5', nameRu: 'Россия', countries: [], code: 'RUS', genres: [{"genre": "фантастика"}], rating: '3', ratingVoteCount: '435345'},
+
+    { posterUrlPreview: '5', nameRu: 'Россия', countries: [], code: 'RUS', genres: [{"genre": "фантастика"}], rating: '3', ratingVoteCount: '435345'},
+    { posterUrlPreview: '5', nameRu: 'Россия', countries: [], code: 'RUS', genres: [{"genre": "фантастика"}], rating: '3', ratingVoteCount: '435345'},
+
+    { posterUrlPreview: '5', nameRu: 'Россия', countries: [], code: 'RUS', genres: [{"genre": "фантастика"}], rating: '3', ratingVoteCount: '435345'},
+    { posterUrlPreview: '5', nameRu: 'Россия', countries: [], code: 'RUS', genres: [{"genre": "фантастика"}], rating: '3', ratingVoteCount: '435345'},
+
+    { posterUrlPreview: '5', nameRu: 'Россия', countries: [], code: 'RUS', genres: [{"genre": "фантастика"}], rating: '3', ratingVoteCount: '435345'},
   ]
   cols = [
-    { header: '', field: '0'},
-    { header: 'Название', field: '1'},
-    { header: 'Описание', field: '2'},
-    { header: 'Жанр', field: '3'},
-    { header: 'Рейтинг', field: '4'},
+    { header: 'Постер'},
+    { header: 'Название'},
+    //{ header: 'Английское'},
+    { header: 'Страна'},
+    { header: 'Год'},
+    { header: 'Жанр'},
+    { header: 'Продолжительность фильма'},
+    { header: 'Рейтинг'},
   ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  value = null
   countries = [
     { name: 'Россия', code: 'RUS'},
     { name: 'Америка', code: 'ENG'},

@@ -1,6 +1,6 @@
 <div class="main">
- <div class="header">
-    <div class="header_content">
+ <div class="header p1">
+    <div class="header_content content_size">
         <div class="header_selector">
             <input class="w500" placeholder="Введите название фильма" type="text" pInputText [(ngModel)]="value" />
             <div class="w500 listbox">
@@ -20,11 +20,20 @@
         </div>
     </div>
  </div>
- <div class="content">
-    <p-table 
+ <div class="content p1">
+    <div class="content_size">
+        <p-table 
+        styleClass="p-datatable-sm"
+        [first]="first"
         [columns]="cols" 
-        [value]="products" 
-        [tableStyle]="{ 'width': '88%', 'margin': '0px auto', 'margin-top': '1rem' }"
+        [value]="films"
+        [paginator]="true"
+        [rows]="5"
+        [tableStyle]=""
+        [rowsPerPageOptions]="[5, 10, 15]"
+        [totalRecords]="250"
+        [lazy]="true"
+        (onLazyLoad)="test2($event)"
         >
         <ng-template pTemplate="header" let-columns>
             <tr>
@@ -33,14 +42,20 @@
                 </th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <ng-template pTemplate="body" let-data let-columns="columns">
             <tr>
-                <td *ngFor="let col of columns">
-                    {{ rowData[2] }}
-                </td>
+                <td><img [src]="data.posterUrlPreview" width="50px" height="70px" alt="" style="vertical-align: middle"></td>
+                <td>{{ data.nameRu }}</td>
+                <!-- <td>{{ data.nameEn }}</td> -->
+                <td>{{ data.countries[0]?.country }}</td>
+                <td>{{ data.year }}</td>
+                <td><span *ngFor="let g of data.genres">{{g.genre}}</span></td>
+                <td>{{ data.filmLength }}</td>
+                <td ><span pTooltip="{{data.ratingVoteCount}} чел. проголосовало">{{ data.rating }}</span></td>
             </tr>
         </ng-template>
     </p-table>
+    </div>
  </div>
 </div>
 

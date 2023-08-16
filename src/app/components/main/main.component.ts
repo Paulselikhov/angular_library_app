@@ -10,14 +10,15 @@ export class MainComponent {
   sortField = 'name'
   sortOrder = 1
   products = [
-    { foto: '5', name: 'Россия', code: 'RUS', test: '3', test2: '3'}
+    { foto: '5', name: 'Россия', code: 'RUS', test: '3', test2: '3'},
+    { foto: '6', name: 'Россия', code: 'RUS', test: '3', test2: '3'}
   ]
   cols = [
-    { header: '', field: 0},
-    { header: 'Название', field: 1},
-    { header: 'Описание', field: 2},
-    { header: 'Жанр', field: 3},
-    { header: 'Рейтинг', field: 4},
+    { header: '', field: '0'},
+    { header: 'Название', field: '1'},
+    { header: 'Описание', field: '2'},
+    { header: 'Жанр', field: '3'},
+    { header: 'Рейтинг', field: '4'},
   ]
   countries = [
     { name: 'Россия', code: 'RUS'},

@@ -49,7 +49,7 @@
                 <!-- <td>{{ data.nameEn }}</td> -->
                 <td>{{ data.countries[0]?.country }}</td>
                 <td>{{ data.year }}</td>
-                <td><span *ngFor="let g of data.genres">{{g.genre}}</span></td>
+                <td><span *ngFor="let g of data.genres">{{g.genre}} </span></td>
                 <td>{{ data.filmLength }}</td>
                 <td ><span pTooltip="{{data.ratingVoteCount}} чел. проголосовало">{{ data.rating }}</span></td>
             </tr>

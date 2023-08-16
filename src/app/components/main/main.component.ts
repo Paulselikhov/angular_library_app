@@ -51,7 +51,7 @@ export class MainComponent {
     { header: 'Страна'},
     { header: 'Год'},
     { header: 'Жанр'},
-    { header: 'Продолжительность фильма'},
+    { header: 'Продолжительность'},
     { header: 'Рейтинг'},
   ]
 

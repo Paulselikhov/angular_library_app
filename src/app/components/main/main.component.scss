@@ -1,7 +1,7 @@
 .main{
     background-color: rgb(253, 223, 223);
     .header{
-        min-height: 10vh;
+        min-height: 12vh;
         padding-top: 1%; 
         .header_content{
             display: flex;
@@ -10,7 +10,7 @@
     }
     .content{
         border-top: 1px solid black;
-        min-height: 90vh;
+        min-height: 88vh;
     }
 }
 

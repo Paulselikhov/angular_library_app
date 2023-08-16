@@ -16,10 +16,10 @@ export class FilmsService {
     }
     constructor(private http: HttpClient) {}
     
-    getTop250Films(page: number): Observable<any> {
+    getTop250Films(page: number, type: string): Observable<any> {
         //type=TOP_250_BEST_FILMS
         //type=TOP_100_POPULAR_FILMS
         //type=TOP_AWAIT_FILMS
-        return this.http.get(`${this.url}/top?page=${page}&type=TOP_250_BEST_FILMS`, {headers: this.headers})
+        return this.http.get(`${this.url}/top?page=${page}&type=${type}`, {headers: this.headers})
       }
 }

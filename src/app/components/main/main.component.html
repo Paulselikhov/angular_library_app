@@ -15,25 +15,26 @@
             </div>
         </div>
         <div>
-            <p-button label="Топ 100 фильмов" (onClick)="test()" styleClass="p-button-text"></p-button>
+            <p-dropdown [options]="topFilmItems" [(ngModel)]="selectedTopFilm" optionLabel="name" (onChange)="this.dt.reset()"></p-dropdown>
             <p-button label="Вернуться на главную" styleClass="p-button-success p-button-text"></p-button>
         </div>
     </div>
  </div>
  <div class="content p1">
     <div class="content_size">
-        <p-table 
+        <p-table
+        #dt
         styleClass="p-datatable-sm"
-        [first]="first"
+        [first]="0"
         [columns]="cols" 
         [value]="films"
         [paginator]="true"
         [rows]="5"
         [tableStyle]=""
         [rowsPerPageOptions]="[5, 10, 15]"
-        [totalRecords]="64"
+        [totalRecords]="100"
         [lazy]="true"
-        (onLazyLoad)="test2($event)"
+        (onLazyLoad)="loadLazy($event)"
         >
         <ng-template pTemplate="header" let-columns>
             <tr>

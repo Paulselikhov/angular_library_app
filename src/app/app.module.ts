@@ -13,6 +13,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { ListboxModule } from 'primeng/listbox';
 import { TooltipModule } from 'primeng/tooltip';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { TooltipModule } from 'primeng/tooltip';
     ButtonModule,
     TableModule,
     ListboxModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

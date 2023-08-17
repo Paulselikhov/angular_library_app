@@ -2,20 +2,20 @@
  <div class="header p1">
     <div class="header_content content_size">
         <div class="header_selector">
-            <input class="w500" placeholder="Введите название фильма" type="text" pInputText [(ngModel)]="value" />
-            <div class="w500 listbox">
-                <p-listbox [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" [listStyle]="{ 'max-height': '250px' }">
-                    <ng-template let-country pTemplate="item">
+            <input class="w500" placeholder="Введите название фильма" type="text" pInputText [(ngModel)]="searchFilmValue" (ngModelChange)="searchFilm()"/>
+            <div class="w500 listbox" [style.display]="searchFilmValue ? 'block' : 'none'">
+                <p-listbox [options]="searchFilmItems" [(ngModel)]="selectedSearchFilm" optionLabel="name" [listStyle]="{ 'max-height': '250px' }">
+                    <ng-template let-film pTemplate="item">
                         <div class="flex align-items-center gap-2">
-                            <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" style="width: 18px"/>
-                            <div>{{ country.name }}</div>
+                            <img src="https://kinopoiskapiunofficial.tech/images/posters/kp_small/301.jpg" style="width: 18px"/>
+                            <div>{{ film.nameRu }}</div>
                         </div>
                     </ng-template>
                 </p-listbox>
             </div>
         </div>
         <div>
-            <p-dropdown [options]="topFilmItems" [(ngModel)]="selectedTopFilm" optionLabel="name" (onChange)="this.dt.reset()"></p-dropdown>
+            <p-dropdown [options]="topFilmMenuItems" [(ngModel)]="selectedTopFilm" optionLabel="name" (onChange)="this.dt.reset()"></p-dropdown>
             <p-button label="Вернуться на главную" styleClass="p-button-success p-button-text"></p-button>
         </div>
     </div>
@@ -27,7 +27,7 @@
         styleClass="p-datatable-sm"
         [first]="0"
         [columns]="cols" 
-        [value]="films"
+        [value]="tableData"
         [paginator]="true"
         [rows]="5"
         [tableStyle]=""

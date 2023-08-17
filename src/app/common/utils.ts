@@ -17,3 +17,34 @@ export const pageCalc = (first: number, rows: number) => {
 	const {page, size} = recalcPage(lastRowIndex, initPage, rows);
 	return {page: page + 1, size, offset: first - page * size};
 };
+
+export function throttle(func: any, ms = 1000) {
+	let isThrottled = false;
+	let savedArgs: any;
+	let savedThis: any;
+  
+	function wrapper() {
+	  if (isThrottled) {
+		// eslint-disable-next-line prefer-rest-params
+		savedArgs = arguments;
+		savedThis = this;
+		return;
+	  }
+  
+	  // eslint-disable-next-line prefer-rest-params
+	  func.apply(this, arguments);
+  
+	  isThrottled = true;
+  
+	  setTimeout(function() {
+		isThrottled = false;
+		if (savedArgs) {
+		  wrapper.apply(savedThis, savedArgs);
+		  // eslint-disable-next-line no-multi-assign
+		  savedArgs = savedThis = null;
+		}
+	  }, ms);
+	}
+  
+	return wrapper;
+  }

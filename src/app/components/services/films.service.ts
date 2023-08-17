@@ -21,5 +21,10 @@ export class FilmsService {
         //type=TOP_100_POPULAR_FILMS
         //type=TOP_AWAIT_FILMS
         return this.http.get(`${this.url}/top?page=${page}&type=${type}`, {headers: this.headers})
-      }
+    }
+
+    getFilms(query:{keyword:string}): Observable<any> {
+        const {keyword} = query
+        return this.http.get(`${this.url}?ratingFrom=5&keyword=${keyword}`, {headers: this.headers})
+    }
 }

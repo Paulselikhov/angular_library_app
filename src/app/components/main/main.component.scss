@@ -1,6 +1,6 @@
 .main{
-    background-color: rgb(253, 223, 223);
     .header{
+        background-color: black;
         min-height: 12vh;
         padding-top: 1%; 
         .header_content{
@@ -9,7 +9,6 @@
         }
     }
     .content{
-        border-top: 1px solid black;
         min-height: 88vh;
     }
 }
@@ -17,6 +16,10 @@
 .content_size{
     width: 90%;
     margin: 0px auto;
+}
+
+.shadow{
+    box-shadow: 1px 1px 6px #090244;
 }
 
 //Поиск фильмов
@@ -36,7 +39,7 @@
 }
 
 //Бутстрап
-.p1-top{
+.p-top{
     padding-top: 1%;
 }
 .p1-right{

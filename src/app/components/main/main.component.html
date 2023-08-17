@@ -1,9 +1,9 @@
 <div class="main">
- <div class="header p1">
+ <div class="header p1 shadow">
     <div class="header_content content_size">
         <div class="film_searcher">
             <input class="w500" placeholder="Введите название фильма" type="text" pInputText [(ngModel)]="searchFilmValue" (ngModelChange)="searchFilm()"/>
-            <div class="w500 listbox" [style.display]="searchFilmValue ? 'block' : 'none'">
+            <div *ngIf="isListboxShow" class="w500 listbox">
                 <p-listbox [options]="searchFilmItems" [(ngModel)]="selectedSearchFilm" (ngModelChange)="openLink($event)" optionLabel="name" [listStyle]="{ 'max-height': '250px' }">
                     <ng-template let-film pTemplate="item">
                         <div class="film_searcher_items">
@@ -23,51 +23,57 @@
             </div>
         </div>
         <div>
-            <p-dropdown [options]="topFilmMenuItems" [(ngModel)]="selectedTopFilm" optionLabel="name" (onChange)="this.dt.reset()"></p-dropdown>
-            <p-button label="Вернуться на главную" styleClass="p-button-success p-button-text"></p-button>
+            <p-dropdown [options]="topFilmMenuItems" [(ngModel)]="selectedTopFilm" optionLabel="name" (onChange)="showTable()"></p-dropdown>
+            <!-- <p-button label="Вернуться на главную" styleClass="p-button-success p-button-text"></p-button> -->
         </div>
     </div>
  </div>
- <div class="content p1-top">
-    <div class="content_size">
+
+ <div class="content p-top">
+    <div class="content_size shadow">
         <p-table
-        #dt
-        styleClass="p-datatable-sm"
-        [first]="0"
-        [columns]="cols" 
-        [value]="tableData"
-        [paginator]="true"
-        [rows]="5"
-        [tableStyle]=""
-        [rowsPerPageOptions]="[5, 10, 15]"
-        [totalRecords]="100"
-        [lazy]="true"
-        (onLazyLoad)="loadLazy($event)"
-        selectionMode="single"
-        (onRowSelect)="onRowSelect($event)"
-        >
-        <ng-template pTemplate="header" let-columns>
-            <tr>
-                <th *ngFor="let col of columns">
-                    {{ col.header }}
-                </th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-data let-columns="columns">
-            <tr [pSelectableRow]="data">
-                <td>{{data.index}}</td>
-                <td><img [src]="data.posterUrlPreview" width="50px" height="70px" alt="" style="vertical-align: middle"></td>
-                <td>{{ data.nameRu }}</td>
-                <!-- <td>{{ data.nameEn }}</td> -->
-                <td>{{ data.countries[0]?.country }}</td>
-                <td><span *ngFor="let g of data.genres">{{g.genre}} </span></td>
-                <td>{{ data.year }}</td>
-                <td>{{ data.filmLength }}</td>
-                <td ><span pTooltip="{{data.ratingVoteCount}} человек проголосовало" tooltipPosition="left">{{ data.rating }}</span></td>
-            </tr>
-        </ng-template>
-    </p-table>
+                *ngIf="isTableShow"
+                #dt
+                styleClass="p-datatable-sm"
+                [first]="0"
+                [columns]="cols"
+                [value]="tableData"
+                [paginator]="true"
+                [rows]="5"
+                [tableStyle]=""
+                [rowsPerPageOptions]="[5, 10, 15]"
+                [totalRecords]="100"
+                [lazy]="true"
+                (onLazyLoad)="loadLazy($event)"
+                selectionMode="single"
+                (onRowSelect)="onRowSelect($event)"
+                >
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns">
+                            {{ col.header }}
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-data let-columns="columns">
+                    <tr [pSelectableRow]="data">
+                        <td>{{data.index}}</td>
+                        <td><img [src]="data.posterUrlPreview" width="50px" height="70px" alt="" style="vertical-align: middle"></td>
+                        <td>{{ data.nameRu }}</td>
+                        <td>{{ data.countries[0]?.country }}</td>
+                        <td><span *ngFor="let g of data.genres">{{g.genre}} </span></td>
+                        <td>{{ data.year }}</td>
+                        <td>{{ data.filmLength }}</td>
+                        <td ><span pTooltip="{{data.ratingVoteCount}} человек проголосовало" tooltipPosition="left">{{ data.rating }}</span></td>
+                    </tr>
+                </ng-template>
+        </p-table>
     </div>
+    <app-film 
+            *ngIf="!isTableShow"
+            [kinopoiskId]="kinopoiskId"
+            class=""
+        ></app-film>
  </div>
 </div>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilmsService } from '../services/films.service';
 
@@ -8,17 +8,17 @@ import { FilmsService } from '../services/films.service';
   styleUrls: ['./film.component.scss']
 })
 export class FilmComponent implements OnInit {
-  private id!: number
+  @Input() kinopoiskId!: number
   public data: any
 
   constructor(
-    private route: ActivatedRoute,
+    //private route: ActivatedRoute,
     private filmsService: FilmsService
     ) {}
   
   ngOnInit(): void {
-    this.id = +this.route.snapshot.params['id']  
-    this.filmsService.getFilmById(this.id).subscribe( res => {
+    //this.id = +this.route.snapshot.params['id']  
+    this.filmsService.getFilmById(this.kinopoiskId).subscribe( res => {
       this.data = res
     })
   }

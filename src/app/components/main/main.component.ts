@@ -12,7 +12,11 @@ import { Router } from '@angular/router';
 })
 export class MainComponent {
   @ViewChild(Table) dt!: Table
-  
+  public kinopoiskId!: number
+
+  public isTableShow: boolean = true
+  public isListboxShow: boolean = false
+
   public tableData: any[] = []
   private filmType!: string
   public cols: { header: string }[] = [
@@ -48,18 +52,31 @@ export class MainComponent {
   ) {}
 
   onRowSelect(e:{data:{filmId:number}}){
-    this.router.navigate([`film/${e.data.filmId}`]);
+    this.kinopoiskId = e.data.filmId
+    this.isTableShow = false
+    //this.router.navigate([`film/${e.data.filmId}`]);
   }
 
   openLink(e:{kinopoiskId: number}){
-    this.router.navigate([`film/${e.kinopoiskId}`]);
+    this.searchFilmValue = ''
+    this.isListboxShow = false
+    this.isTableShow = false
+    this.kinopoiskId = e.kinopoiskId
+    //this.router.navigate([`film/${e.kinopoiskId}`]);
   }
 
   public searchFilm = throttle( () => {
+    this.searchFilmValue ? this.isListboxShow = true : this.isListboxShow = false
 		this.filmsService.getFilms({keyword:this.searchFilmValue}).subscribe(res => {
       this.searchFilmItems = res.items
     })
 	});
+
+  public showTable(){
+    this.dt?.reset()
+    this.isTableShow = true
+    
+  }
 
   public loadLazy(event:LazyLoadEvent){
     this.filmType = this.selectedTopFilm?.id ? this.selectedTopFilm.id : 'TOP_100_POPULAR_FILMS'

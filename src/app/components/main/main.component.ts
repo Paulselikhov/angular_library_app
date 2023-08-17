@@ -3,6 +3,7 @@ import { FilmsService } from '../services/films.service';
 import { pageCalc, throttle } from 'src/app/common/utils';
 import { LazyLoadEvent } from 'primeng/api';
 import { Table } from 'primeng/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -36,10 +37,23 @@ export class MainComponent {
   public searchFilmItems: any[] = []
   public searchFilmValue: string = ''
   public selectedSearchFilm: any
+
+  public selectedFilm: any
   
   
   
-  constructor(private filmsService: FilmsService) {}
+  constructor(
+    private filmsService: FilmsService,
+    private router: Router
+  ) {}
+
+  onRowSelect(e:{data:{filmId:number}}){
+    this.router.navigate([`film/${e.data.filmId}`]);
+  }
+
+  openLink(e:{kinopoiskId: number}){
+    this.router.navigate([`film/${e.kinopoiskId}`]);
+  }
 
   public searchFilm = throttle( () => {
 		this.filmsService.getFilms({keyword:this.searchFilmValue}).subscribe(res => {
@@ -74,7 +88,6 @@ export class MainComponent {
 
 
 
-  value = ''
   countries = [
     { name: 'Россия', code: 'RUS'},
     { name: 'Америка', code: 'ENG'},
@@ -85,5 +98,4 @@ export class MainComponent {
     { name: 'Германия', code: 'GER'},
 
   ]
-  selectedCountry = null
 }

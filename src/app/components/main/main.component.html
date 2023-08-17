@@ -4,7 +4,7 @@
         <div class="film_searcher">
             <input class="w500" placeholder="Введите название фильма" type="text" pInputText [(ngModel)]="searchFilmValue" (ngModelChange)="searchFilm()"/>
             <div class="w500 listbox" [style.display]="searchFilmValue ? 'block' : 'none'">
-                <p-listbox [options]="searchFilmItems" [(ngModel)]="selectedSearchFilm" optionLabel="name" [listStyle]="{ 'max-height': '250px' }">
+                <p-listbox [options]="searchFilmItems" [(ngModel)]="selectedSearchFilm" (ngModelChange)="openLink($event)" optionLabel="name" [listStyle]="{ 'max-height': '250px' }">
                     <ng-template let-film pTemplate="item">
                         <div class="film_searcher_items">
                             <img class="p1-right" [src]="film.posterUrlPreview" style="max-width: 70px"/>
@@ -43,6 +43,8 @@
         [totalRecords]="100"
         [lazy]="true"
         (onLazyLoad)="loadLazy($event)"
+        selectionMode="single"
+        (onRowSelect)="onRowSelect($event)"
         >
         <ng-template pTemplate="header" let-columns>
             <tr>
@@ -52,7 +54,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-data let-columns="columns">
-            <tr>
+            <tr [pSelectableRow]="data">
                 <td>{{data.index}}</td>
                 <td><img [src]="data.posterUrlPreview" width="50px" height="70px" alt="" style="vertical-align: middle"></td>
                 <td>{{ data.nameRu }}</td>

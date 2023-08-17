@@ -27,4 +27,8 @@ export class FilmsService {
         const {keyword} = query
         return this.http.get(`${this.url}?ratingFrom=5&keyword=${keyword}`, {headers: this.headers})
     }
+
+    getFilmById(id:number): Observable<any> {
+        return this.http.get(`${this.url}/${id}`, {headers: this.headers})
+    }
 }

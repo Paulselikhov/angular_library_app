@@ -1,14 +1,22 @@
 <div class="main">
  <div class="header p1">
     <div class="header_content content_size">
-        <div class="header_selector">
+        <div class="film_searcher">
             <input class="w500" placeholder="Введите название фильма" type="text" pInputText [(ngModel)]="searchFilmValue" (ngModelChange)="searchFilm()"/>
             <div class="w500 listbox" [style.display]="searchFilmValue ? 'block' : 'none'">
                 <p-listbox [options]="searchFilmItems" [(ngModel)]="selectedSearchFilm" optionLabel="name" [listStyle]="{ 'max-height': '250px' }">
                     <ng-template let-film pTemplate="item">
-                        <div class="flex align-items-center gap-2">
-                            <img src="https://kinopoiskapiunofficial.tech/images/posters/kp_small/301.jpg" style="width: 18px"/>
-                            <div>{{ film.nameRu }}</div>
+                        <div class="film_searcher_items">
+                            <img class="p1-right" [src]="film.posterUrlPreview" style="max-width: 70px"/>
+                            <div class="p1-right">
+                                <div >{{ film.nameRu }}</div>
+                                <div>Год выпуска: {{ film.year }}</div>
+                                <div>Cтрана: <span *ngFor="let i of film.countries">{{i.country}} </span></div>
+                                <div>Жанр: <span *ngFor="let i of film.genres">{{i.genre}} </span></div>
+                                <div>Рейтинг Кинопоиска: {{ film.ratingKinopoisk }} </div>
+                                <div>Рейтинг Imdb: {{ film.ratingImdb }}</div>
+                            </div>
+                            
                         </div>
                     </ng-template>
                 </p-listbox>
@@ -20,7 +28,7 @@
         </div>
     </div>
  </div>
- <div class="content p1">
+ <div class="content p1-top">
     <div class="content_size">
         <p-table
         #dt

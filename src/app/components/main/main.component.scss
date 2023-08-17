@@ -18,14 +18,9 @@
     width: 90%;
     margin: 0px auto;
 }
-.p1{
-    padding-top: 1%;
-}
 
-
-
-
-.header_selector{
+//Поиск фильмов
+.film_searcher{
     position: relative;
     .listbox{
         position: absolute;
@@ -34,4 +29,16 @@
     .w500{
         width: 500px;
     }
+}
+.film_searcher_items{
+    display: flex;
+    width: 100%;
+}
+
+//Бутстрап
+.p1-top{
+    padding-top: 1%;
+}
+.p1-right{
+    padding-right: 1%;
 }

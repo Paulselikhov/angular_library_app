@@ -10,6 +10,7 @@ import { FilmsService } from '../services/films.service';
 export class FilmComponent implements OnInit {
   @Input() kinopoiskId!: number
   public data: any
+  public notFoundCoverUrl = 'https://a.l3n.co/i/Arb2Qq.png'
 
   constructor(
     //private route: ActivatedRoute,

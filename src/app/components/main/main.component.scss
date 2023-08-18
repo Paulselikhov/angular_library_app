@@ -13,6 +13,19 @@
     }
 }
 
+//Рейтинг
+.rating_span{
+    background-color: #fccf08;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px #afb8eb;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 60px;
+}
+
 
 
 //Поиск фильмов
@@ -31,6 +44,7 @@
     width: 100%;
 }
 
+
 //Бутстрап
 .ff{
     font-family: 'Montserrat', sans-serif;
@@ -41,6 +55,7 @@
 .p1-right{
     padding-right: 1%;
 }
+
 
 //Размеры и тень
 .content_size{

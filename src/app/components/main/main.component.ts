@@ -23,11 +23,10 @@ export class MainComponent {
     { header: '№'},
     { header: 'Постер'},
     { header: 'Название'},
-    //{ header: 'Английское'},
-    { header: 'Страна'},
     { header: 'Жанр'},
-    { header: 'Год выпуска'},
-    { header: 'Продолжительность'},
+    { header: 'Страна'},
+    { header: 'Год'},
+    { header: 'Длительность'},
     { header: 'Рейтинг'},
   ]
   

@@ -59,11 +59,11 @@
                             <td style="padding: 20px;">{{data.index}}</td>
                             <td style="padding: 20px;"><img [src]="data.posterUrlPreview" width="50px" height="70px" alt="" style="vertical-align: middle; border-radius: 10px; box-shadow: 1px 1px 6px #090244;"></td>
                             <td style="padding: 20px;">{{ data.nameRu }}</td>
-                            <td style="padding: 20px;">{{ data.countries[0]?.country }}</td>
                             <td style="padding: 20px;"><span *ngFor="let g of data.genres">{{g.genre}} </span></td>
-                            <td style="padding: 20px;">{{ data.year }}</td>
-                            <td style="padding: 20px;">{{ data.filmLength }}</td>
-                            <td style="padding: 20px;"><span pTooltip="{{data.ratingVoteCount}} человек проголосовало" tooltipPosition="left">{{ data.rating }}</span></td>
+                            <td style="padding: 20px;">{{ data.countries[0]?.country }}</td>
+                            <td style="padding: 20px; ">{{ data.year }}</td>
+                            <td style="padding: 20px; text-align: center;">{{ data.filmLength }}</td>
+                            <td style="padding: 20px;"><div pTooltip="{{data.ratingVoteCount}} человек проголосовало" tooltipPosition="left" class="rating_span">{{ data.rating }}</div></td>
                         </tr>
                     </ng-template>
             </p-table>

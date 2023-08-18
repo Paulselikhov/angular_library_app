@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main ff">
  <div class="header p1 shadow">
     <div class="header_content content_size">
         <div class="film_searcher">
@@ -30,7 +30,7 @@
  </div>
 
  <div class="content p-top">
-    <div class="content_size shadow">
+    <div class="content_size shadow" style="margin-bottom: 2%;">
         <p-table
                 *ngIf="isTableShow"
                 #dt
@@ -49,22 +49,22 @@
                 (onRowSelect)="onRowSelect($event)"
                 >
                 <ng-template pTemplate="header" let-columns>
-                    <tr>
-                        <th *ngFor="let col of columns">
+                    <tr class="ff">
+                        <th *ngFor="let col of columns" style="padding: 20px;">
                             {{ col.header }}
                         </th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-data let-columns="columns">
-                    <tr [pSelectableRow]="data">
-                        <td>{{data.index}}</td>
-                        <td><img [src]="data.posterUrlPreview" width="50px" height="70px" alt="" style="vertical-align: middle"></td>
-                        <td>{{ data.nameRu }}</td>
-                        <td>{{ data.countries[0]?.country }}</td>
-                        <td><span *ngFor="let g of data.genres">{{g.genre}} </span></td>
-                        <td>{{ data.year }}</td>
-                        <td>{{ data.filmLength }}</td>
-                        <td ><span pTooltip="{{data.ratingVoteCount}} человек проголосовало" tooltipPosition="left">{{ data.rating }}</span></td>
+                    <tr [pSelectableRow]="data" class="ff">
+                        <td style="padding: 20px;">{{data.index}}</td>
+                        <td style="padding: 20px;"><img [src]="data.posterUrlPreview" width="50px" height="70px" alt="" style="vertical-align: middle; border-radius: 10px; box-shadow: 1px 1px 6px #090244;"></td>
+                        <td style="padding: 20px;">{{ data.nameRu }}</td>
+                        <td style="padding: 20px;">{{ data.countries[0]?.country }}</td>
+                        <td style="padding: 20px;"><span *ngFor="let g of data.genres">{{g.genre}} </span></td>
+                        <td style="padding: 20px;">{{ data.year }}</td>
+                        <td style="padding: 20px;">{{ data.filmLength }}</td>
+                        <td style="padding: 20px;"><span pTooltip="{{data.ratingVoteCount}} человек проголосовало" tooltipPosition="left">{{ data.rating }}</span></td>
                     </tr>
                 </ng-template>
         </p-table>

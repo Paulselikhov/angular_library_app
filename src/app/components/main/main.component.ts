@@ -47,46 +47,43 @@ export class MainComponent {
     private filmsService: FilmsService,
     private router: Router,
   ) {}
-
+  
+  //события
   onRowSelect(e:{data:{filmId:number}}){
     this.kinopoiskId = e.data.filmId
     this.isTableShow = false
-    //this.router.navigate([`film/${e.data.filmId}`]);
   }
-
   onSearchedFilmClick(e:{kinopoiskId: number}){
     this.showListBox(false)
-    this.selectedTopFilm = { id: '', name: ''}
-    this.isTableShow = false
+    this.showTable(false)
     this.isAboutFilmShow = true
-    this.kinopoiskId = e.kinopoiskId
-    //this.router.navigate([`film/${e.kinopoiskId}`]);
-  }
 
+    //Сброс значения для топ. фильмов
+    this.selectedTopFilm = { id: '', name: ''}
+    //Обновляем id
+    this.kinopoiskId = e.kinopoiskId
+  }
   checkEvent($event:any){
-    if($event.relatedTarget?.offsetParent?.id){
-      this.showListBox(true)
-    }else{
-      this.showListBox(false)
-    }
+    $event.relatedTarget?.offsetParent?.id ? this.showListBox(true): this.showListBox(false)
   }
   showListBox(value:boolean){
     this.searchFilmValue ? this.isListboxShow = value : this.isListboxShow = false
   }
+  showTable(value:boolean){
+    this.dt?.reset()
+    this.isTableShow = value
+    this.isAboutFilmShow = false
+  }
 
-  public searchFilm = throttle( () => {
+  //поиск
+  onSearchFilmChange = throttle( () => {
     this.showListBox(true)
 		this.filmsService.getFilms({keyword:this.searchFilmValue}).subscribe(res => {
       this.searchFilmItems = res.items
     })
 	});
-
-  public showTable(){
-    this.dt?.reset()
-    this.isTableShow = true
-  }
-
-  public loadLazy(event:LazyLoadEvent){
+  //Загрузка таблицы
+  loadLazy(event:LazyLoadEvent){
     const {page} = pageCalc(event.first!, event.rows!);
     if(this.selectedTopFilm?.id){
       this.filmsService.getTop250Films(page, this.selectedTopFilm?.id).subscribe( (res) => {

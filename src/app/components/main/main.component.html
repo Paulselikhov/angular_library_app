@@ -2,7 +2,7 @@
  <div class="header p1 shadow">
     <div class="header_content content_size">
         <div class="film_searcher">
-            <input class="w500" placeholder="Введите название фильма" type="text" pInputText [(ngModel)]="searchFilmValue" (ngModelChange)="searchFilm()" (click)="showListBox(true)" (blur)="checkEvent($event)"/>
+            <input class="w500" placeholder="Введите название фильма" type="text" pInputText [(ngModel)]="searchFilmValue" (ngModelChange)="onSearchFilmChange()" (click)="showListBox(true)" (blur)="checkEvent($event)"/>
             <div *ngIf="isListboxShow" id="listBox" class="w500 listbox">
                 <p-listbox [options]="searchFilmItems" [(ngModel)]="selectedSearchFilm" (ngModelChange)="onSearchedFilmClick($event)" optionLabel="name" [listStyle]="{ 'max-height': '250px' }">
                     <ng-template let-film pTemplate="item">
@@ -22,7 +22,7 @@
             </div>
         </div>
         <div>
-            <p-dropdown placeholder="Значение не выбрано" [options]="topFilmMenuItems" [(ngModel)]="selectedTopFilm" optionLabel="name" (onChange)="showTable()"></p-dropdown>
+            <p-dropdown placeholder="Значение не выбрано" [options]="topFilmMenuItems" [(ngModel)]="selectedTopFilm" optionLabel="name" (onChange)="showTable(true)"></p-dropdown>
             <!-- <p-button label="Вернуться на главную" styleClass="p-button-success p-button-text"></p-button> -->
         </div>
     </div>

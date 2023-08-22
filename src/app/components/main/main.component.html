@@ -22,7 +22,7 @@
             </div>
         </div>
         <div>
-            <p-dropdown placeholder="Значение не выбрано" [options]="topFilmMenuItems" [(ngModel)]="selectedTopFilm" optionLabel="name" (onChange)="showTable(true)"></p-dropdown>
+            <p-dropdown placeholder="Значение не выбрано" [options]="topFilmMenuItems" [(ngModel)]="selectedTopFilm" optionLabel="name" (onChange)="showTable(true); showAboutFilm(false)"></p-dropdown>
             <!-- <p-button label="Вернуться на главную" styleClass="p-button-success p-button-text"></p-button> -->
         </div>
     </div>

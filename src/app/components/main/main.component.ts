@@ -48,21 +48,29 @@ export class MainComponent {
     private router: Router,
   ) {}
   
-  //события
+  //события обновления id
   onRowSelect(e:{data:{filmId:number}}){
+    this.showTable(false)
+    this.showAboutFilm(true)
+
+    //Сброс значения для топ. фильмов
+    this.selectedTopFilm = { id: '', name: ''}
+    //Обновляем id
     this.kinopoiskId = e.data.filmId
-    this.isTableShow = false
   }
   onSearchedFilmClick(e:{kinopoiskId: number}){
     this.showListBox(false)
     this.showTable(false)
-    this.isAboutFilmShow = true
+    this.showAboutFilm(true)
 
     //Сброс значения для топ. фильмов
     this.selectedTopFilm = { id: '', name: ''}
     //Обновляем id
     this.kinopoiskId = e.kinopoiskId
+    
   }
+
+  //события для скрытия/показа
   checkEvent($event:any){
     $event.relatedTarget?.offsetParent?.id ? this.showListBox(true): this.showListBox(false)
   }
@@ -72,7 +80,9 @@ export class MainComponent {
   showTable(value:boolean){
     this.dt?.reset()
     this.isTableShow = value
-    this.isAboutFilmShow = false
+  }
+  showAboutFilm(value:boolean){
+    this.isAboutFilmShow = value
   }
 
   //поиск
@@ -82,6 +92,7 @@ export class MainComponent {
       this.searchFilmItems = res.items
     })
 	});
+  
   //Загрузка таблицы
   loadLazy(event:LazyLoadEvent){
     const {page} = pageCalc(event.first!, event.rows!);

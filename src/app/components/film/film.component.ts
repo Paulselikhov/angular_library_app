@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilmsService } from '../services/films.service';
 
@@ -7,20 +7,21 @@ import { FilmsService } from '../services/films.service';
   templateUrl: './film.component.html',
   styleUrls: ['./film.component.scss']
 })
-export class FilmComponent implements OnInit {
+export class FilmComponent implements OnChanges {
   @Input() kinopoiskId!: number
   public data: any
   public notFoundCoverUrl = 'https://a.l3n.co/i/Arb2Qq.png'
 
   constructor(
     //private route: ActivatedRoute,
-    private filmsService: FilmsService
+    private filmsService: FilmsService,
+    private changedetector: ChangeDetectorRef,
     ) {}
   
-  ngOnInit(): void {
-    //this.id = +this.route.snapshot.params['id']  
+  ngOnChanges(){
     this.filmsService.getFilmById(this.kinopoiskId).subscribe( res => {
       this.data = res
+      this.changedetector.detectChanges()
     })
   }
 }

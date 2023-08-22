@@ -2,9 +2,9 @@
  <div class="header p1 shadow">
     <div class="header_content content_size">
         <div class="film_searcher">
-            <input class="w500" placeholder="Введите название фильма" type="text" pInputText [(ngModel)]="searchFilmValue" (ngModelChange)="searchFilm()"/>
-            <div *ngIf="isListboxShow" class="w500 listbox">
-                <p-listbox [options]="searchFilmItems" [(ngModel)]="selectedSearchFilm" (ngModelChange)="openLink($event)" optionLabel="name" [listStyle]="{ 'max-height': '250px' }">
+            <input class="w500" placeholder="Введите название фильма" type="text" pInputText [(ngModel)]="searchFilmValue" (ngModelChange)="searchFilm()" (click)="showListBox(true)" (blur)="checkEvent($event)"/>
+            <div *ngIf="isListboxShow" id="listBox" class="w500 listbox">
+                <p-listbox [options]="searchFilmItems" [(ngModel)]="selectedSearchFilm" (ngModelChange)="onSearchedFilmClick($event)" optionLabel="name" [listStyle]="{ 'max-height': '250px' }">
                     <ng-template let-film pTemplate="item">
                         <div class="film_searcher_items">
                             <img class="p1-right" [src]="film.posterUrlPreview" style="max-width: 70px"/>
@@ -16,14 +16,13 @@
                                 <div>Рейтинг Кинопоиска: {{ film.ratingKinopoisk }} </div>
                                 <div>Рейтинг Imdb: {{ film.ratingImdb }}</div>
                             </div>
-                            
                         </div>
                     </ng-template>
                 </p-listbox>
             </div>
         </div>
         <div>
-            <p-dropdown [options]="topFilmMenuItems" [(ngModel)]="selectedTopFilm" optionLabel="name" (onChange)="showTable()"></p-dropdown>
+            <p-dropdown placeholder="Значение не выбрано" [options]="topFilmMenuItems" [(ngModel)]="selectedTopFilm" optionLabel="name" (onChange)="showTable()"></p-dropdown>
             <!-- <p-button label="Вернуться на главную" styleClass="p-button-success p-button-text"></p-button> -->
         </div>
     </div>
@@ -70,7 +69,7 @@
         </div>
      </div>
  </ng-container>
- <ng-container *ngIf="!isTableShow">
+ <ng-container *ngIf="isAboutFilmShow">
     <app-film
        [kinopoiskId]="kinopoiskId"
        class=""

@@ -14,11 +14,11 @@ export class MainComponent {
   @ViewChild(Table) dt!: Table
   public kinopoiskId!: number
 
-  public isTableShow: boolean = true
+  public isTableShow: boolean = false
+  public isAboutFilmShow: boolean = false
   public isListboxShow: boolean = false
 
   public tableData: any[] = []
-  private filmType!: string
   public cols: { header: string }[] = [
     { header: '№'},
     { header: 'Постер'},
@@ -43,11 +43,9 @@ export class MainComponent {
 
   public selectedFilm: any
   
-  
-  
   constructor(
     private filmsService: FilmsService,
-    private router: Router
+    private router: Router,
   ) {}
 
   onRowSelect(e:{data:{filmId:number}}){
@@ -56,16 +54,28 @@ export class MainComponent {
     //this.router.navigate([`film/${e.data.filmId}`]);
   }
 
-  openLink(e:{kinopoiskId: number}){
-    this.searchFilmValue = ''
-    this.isListboxShow = false
+  onSearchedFilmClick(e:{kinopoiskId: number}){
+    this.showListBox(false)
+    this.selectedTopFilm = { id: '', name: ''}
     this.isTableShow = false
+    this.isAboutFilmShow = true
     this.kinopoiskId = e.kinopoiskId
     //this.router.navigate([`film/${e.kinopoiskId}`]);
   }
 
+  checkEvent($event:any){
+    if($event.relatedTarget?.offsetParent?.id){
+      this.showListBox(true)
+    }else{
+      this.showListBox(false)
+    }
+  }
+  showListBox(value:boolean){
+    this.searchFilmValue ? this.isListboxShow = value : this.isListboxShow = false
+  }
+
   public searchFilm = throttle( () => {
-    this.searchFilmValue ? this.isListboxShow = true : this.isListboxShow = false
+    this.showListBox(true)
 		this.filmsService.getFilms({keyword:this.searchFilmValue}).subscribe(res => {
       this.searchFilmItems = res.items
     })
@@ -74,16 +84,16 @@ export class MainComponent {
   public showTable(){
     this.dt?.reset()
     this.isTableShow = true
-    
   }
 
   public loadLazy(event:LazyLoadEvent){
-    this.filmType = this.selectedTopFilm?.id ? this.selectedTopFilm.id : 'TOP_100_POPULAR_FILMS'
     const {page} = pageCalc(event.first!, event.rows!);
-    this.filmsService.getTop250Films(page, this.filmType).subscribe( (res) => {
-      res.films.map((i:any, index:any) => i.index = event.first + index + 1)
-      this.tableData = res.films
-    })  
+    if(this.selectedTopFilm?.id){
+      this.filmsService.getTop250Films(page, this.selectedTopFilm?.id).subscribe( (res) => {
+        res.films.map((i:any, index:any) => i.index = event.first + index + 1)
+        this.tableData = res.films
+      })  
+    }
   }
 
 

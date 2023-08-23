@@ -1,4 +1,23 @@
 
 <div class="film" [style]="{'background': 'url('+data.coverUrl+') 200px 0/cover no-repeat'}">
-    <div class="film_shadow"></div>
+    <div class="film_shadow">
+        <div class="film_content">
+            <div>
+                <div class="content_title">{{data.nameRu}}</div>
+                <div class="main_children">
+                  <span>IMDb {{data.ratingImdb}}</span>
+                  <span>Кинопоиск {{data.ratingKinopoisk}}</span>
+                  <span>{{data.genres[0].genre}}&nbsp;&nbsp;&nbsp;|</span>
+                  <span>&nbsp;&nbsp;&nbsp;{{data.type}}&nbsp;&nbsp;&nbsp;|</span>
+                  <span>&nbsp;&nbsp;&nbsp;{{data.year}}</span>
+                </div>
+            </div>
+            <div>
+              <div class="main_watch">
+                <a [href]="data.webUrl">Смотреть</a>
+              </div>
+              <div class="main_slogan">{{data.slogan}}</div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss', '../../app.component.scss']
 })
 export class MainComponent {
   @ViewChild(Table) dt!: Table

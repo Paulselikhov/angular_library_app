@@ -1,10 +1,7 @@
 .film{
     height: 88vh; // Высота изображения
     font-size: 10px;
-    overflow: visible;
-    font-family: 'Montserrat', sans-serif;
-    color: #ffffff;
-
+    color: white;
     .film_shadow{
         background: linear-gradient(to left,rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.8), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0));
         background-repeat: no-repeat;
@@ -15,26 +12,19 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 8% 0px 0px 8%; // относительно .main
+ 
             height: 100%; // Относительно .title
             text-shadow: 1px 1px 8px #000; // Тень для всех элементов в блоке с изображением
 
             .content_title{
-                font-size: 6em;
                 margin-bottom: 3%;
-                
             }
             .main_children{ // Блок Рейтинг, тип, жанр, год
-            
                 display: flex;
-                flex-wrap: wrap;
+                align-items: center;
                 span{
-                    font-size: 2em;
-                    font-weight: 600;
-                    line-height: 1.5em;
-                    
                     &:first-child{ // Рейтинг IMDb
-                        padding: 0.5em 0.7em 0.5em;
+                        padding: 0.4em;
                         white-space: nowrap; // перенос строки
                         margin-right: 15px;
                         
@@ -44,12 +34,9 @@
                         color: black;
                         text-align: center;
                         text-shadow: none;
-                        font-weight: 900;
-                        font-size: 1.6em;
-                        line-height: 0.9em;
                     }
                     &:nth-child(2){ // Рейтинг кинопоиск
-                        padding: 0.5em 0.7em 0.5em;
+                        padding: 0.4em;
                         white-space: nowrap; // перенос строки
                         margin-right: 15px;
 
@@ -59,9 +46,6 @@
                         
                         color: black;
                         text-align: center;
-                        font-weight: 900;
-                        font-size: 1.6em;
-                        line-height: 0.9em;
                     }
                     &:nth-child(3){ // Жанр
                         text-shadow: 1px 1px 8px #000;
@@ -75,24 +59,24 @@
                 }
                 
             }
-            .main_watch{
-            
+            .main_watch{      
+                padding: 10px 5px 9px 5px; 
+                font-size: 2.5em;
                 width: 6em;
-                padding: 10px 0;
                 margin-bottom: 1em;
             
                 border: 1px solid #ffffff;
                 border-radius: 20px;
 
-                font-size: 2.8em;
                 text-align: center;
                 a{
                     color: white;
+                    text-decoration:none;
                 }
                 &:active{
                     padding: 10px 5px 9px 5px;
                     box-shadow: 0px 0px 8px 2px rgb(119, 0, 255);
-                    font-size: 2.7em;
+                    font-size: 2.4em;
                         &:hover{
                             box-shadow: 0px 0px 8px 2px rgb(119, 0, 255);
                         }
@@ -104,11 +88,51 @@
                 
             }
             .main_slogan{
-                font-size: 2em;
                 text-shadow: 2px 2px 3px #000;
                 padding-bottom: 3%;
- 
             }
         }
     }
+    .film_description{
+        color: #323232;
+        p{
+            &:first-child{ //Заголовок
+               margin-bottom: 0.5em; // Отступ заголовка от описания
+            }
+            &:nth-child(2){// Описание фильма
+                text-align: justify;
+                margin-bottom: 2em; // Отступ описания от похожих фильмов
+            }
+        }
+
+        .description_similars{
+            .similars_title{
+                margin-bottom: 0.5em;
+            }
+            .similars__list{
+                max-width: 100%; // Ширина относительно блока descripton
+                // Флекс настройки для постов
+                display: flex;
+                justify-content:left;
+                flex-wrap: wrap;
+
+                .notfound{
+                    margin-bottom: 1em;
+                }
+            }
+
+        }
+        
+    }
+}
+
+.fstt{
+    font-size: 7em;
+}
+.fst{
+    font-size: 4em;
+}
+.fsd{
+    font-size: 2.5em;
+    font-weight: 300;
 }

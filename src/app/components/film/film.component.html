@@ -1,10 +1,10 @@
 
 <div class="film" [style]="{'background': 'url('+data.coverUrl+') 200px 0/cover no-repeat'}">
     <div class="film_shadow">
-        <div class="film_content">
+        <div class="film_content p-top content_size">
             <div>
-                <div class="content_title">{{data.nameRu}}</div>
-                <div class="main_children">
+                <div class="content_title fstt">{{data.nameRu}}</div>
+                <div class="main_children fsd">
                   <span>IMDb {{data.ratingImdb}}</span>
                   <span>Кинопоиск {{data.ratingKinopoisk}}</span>
                   <span>{{data.genres[0].genre}}&nbsp;&nbsp;&nbsp;|</span>
@@ -16,8 +16,18 @@
               <div class="main_watch">
                 <a [href]="data.webUrl">Смотреть</a>
               </div>
-              <div class="main_slogan">{{data.slogan}}</div>
+              <div class="main_slogan fsd">{{data.slogan}}</div>
             </div>
         </div>
+    </div>
+    <div class="film_description p-top content_size">
+      <p class="fst">Смотри {{data.nameRu}} на Richbee Shows</p>
+      <p class="fsd">{{data.description}}</p>
+      <div class="description_similars">
+        <div class="similars_title fst">Также может понравиться</div>
+        <div class="similars__list">
+            <div class="notfound fsd">К сожалению похожих фильмов не найдено :(</div>
+        </div>
+      </div>
     </div>
 </div>

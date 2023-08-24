@@ -3,11 +3,11 @@ import { FilmsService } from '../services/films.service';
 import { IFilm, ISimilar } from '../model/films.model';
 
 @Component({
-  selector: 'app-film',
-  templateUrl: './film.component.html',
-  styleUrls: ['./film.component.scss', '../../app.component.scss']
+  selector: 'app-films-about',
+  templateUrl: './films-about.component.html',
+  styleUrls: ['./films-about.component.scss', '../../app.component.scss']
 })
-export class FilmComponent {
+export class FilmsAboutComponent {
   @Input() set kinopoiskId(kinopoiskId: number){ this.updateForm(kinopoiskId) }
   public data: any
   public similarItems!: ISimilar[]

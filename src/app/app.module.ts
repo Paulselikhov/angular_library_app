@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FilmComponent } from './components/film/film.component';
-import {  MainComponent } from './components/main/main.component';
+import { FilmsAboutComponent } from './components/films-about/films-about.component';
+import { FilmsMainComponent } from './components/films-main/films-main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
 import { InputTextModule } from 'primeng/inputtext';
@@ -18,9 +18,8 @@ import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
-    FilmComponent,
-    MainComponent,
-
+    FilmsAboutComponent,
+    FilmsMainComponent,
   ],
   imports: [
     BrowserModule,

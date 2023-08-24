@@ -6,11 +6,11 @@ import { Table } from 'primeng/table';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss', '../../app.component.scss']
+  selector: 'app-films-main',
+  templateUrl: './films-main.component.html',
+  styleUrls: ['./films-main.component.scss', '../../app.component.scss']
 })
-export class MainComponent {
+export class FilmsMainComponent {
   @ViewChild(Table) dt!: Table
   public kinopoiskId!: number
 

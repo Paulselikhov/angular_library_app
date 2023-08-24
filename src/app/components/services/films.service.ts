@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { IFilm, IFilms, ISimilar, ITopFilms } from "../model/films.model";
 
 @Injectable({ 
     providedIn: 'root'
@@ -16,23 +17,20 @@ export class FilmsService {
     }
     constructor(private http: HttpClient) {}
     
-    getTop250Films(page: number, type: string): Observable<any> {
-        //type=TOP_250_BEST_FILMS
-        //type=TOP_100_POPULAR_FILMS
-        //type=TOP_AWAIT_FILMS
-        return this.http.get(`${this.url}/top?page=${page}&type=${type}`, {headers: this.headers})
+    getTop250Films(page: number, type: string): Observable<{pageCount: number, films: ITopFilms[]}> {
+        return this.http.get<{pageCount: number, films: ITopFilms[]}>(`${this.url}/top?page=${page}&type=${type}`, {headers: this.headers})
     }
 
-    getFilms(query:{keyword:string}): Observable<any> {
+    getFilms(query:{keyword:string}): Observable<{total: number, totalPages: number, items: IFilms[]}> {
         const {keyword} = query
-        return this.http.get(`${this.url}?ratingFrom=5&keyword=${keyword}`, {headers: this.headers})
+        return this.http.get<{total: number, totalPages: number, items: IFilms[]}>(`${this.url}?ratingFrom=5&keyword=${keyword}`, {headers: this.headers})
     }
 
-    getFilmById(id:number): Observable<any> {
-        return this.http.get(`${this.url}/${id}`, {headers: this.headers})
+    getFilmById(id:number): Observable<IFilm> {
+        return this.http.get<IFilm>(`${this.url}/${id}`, {headers: this.headers})
     }
 
-    getSimilarsById(id:number): Observable<any> {
-        return this.http.get(`${this.url}/${id}/similars`, {headers: this.headers})
+    getSimilarsById(id:number): Observable<{total: number, items: ISimilar[]}> {
+        return this.http.get<{total: number, items: ISimilar[]}>(`${this.url}/${id}/similars`, {headers: this.headers})
     }
 }

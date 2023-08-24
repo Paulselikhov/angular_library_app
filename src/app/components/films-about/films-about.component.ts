@@ -9,7 +9,7 @@ import { IFilm, ISimilar } from '../model/films.model';
 })
 export class FilmsAboutComponent {
   @Input() set kinopoiskId(kinopoiskId: number){ this.updateForm(kinopoiskId) }
-  public data: any
+  public data!: IFilm
   public similarItems!: ISimilar[]
   public similarFilteredItems!: IFilm[]
 
@@ -32,7 +32,7 @@ export class FilmsAboutComponent {
       this.similarItems = this.similarItems.slice(0,4)
       this.similarItems.map( (i:ISimilar) => {
         this.filmsService.getFilmById(i.filmId).subscribe( (f:IFilm) => {
-          this.similarFilteredItems.push({...i, ...f})
+          this.similarFilteredItems.push({...f})
         })
       })
     })

@@ -1,12 +1,3 @@
-export interface ISimilar{
-    filmId: number,
-    nameRu: string,
-    nameEn: string
-    nameOriginal: string
-    posterUrl: string,
-    posterUrlPreview: string,
-    relationType: string
-}
 export interface IFilm{
   kinopoiskId: number,
   kinopoiskHDId: string,
@@ -57,4 +48,52 @@ export interface IFilm{
   serial: boolean,
   shortFilm: boolean,
   completed: boolean
+}
+
+export interface IFilms{
+  kinopoiskId: number,
+  imdbId: string,
+  nameRu: string,
+  nameEn: string,
+  nameOriginal: string,
+  countries: {
+      country: string
+    }[],
+  genres: {
+      genre: string
+    }[],
+  ratingKinopoisk: number,
+  ratingImdb: number,
+  year: string,
+  type: string,
+  posterUrl: string,
+  posterUrlPreview: string
+}
+
+export interface ITopFilms{
+  filmId: number,
+  nameRu: string,
+  nameEn: string,
+  year: number,
+  filmLength: number,
+  countries: {
+      country: string
+    }[],
+  genres: {
+      genre: string
+    }[],
+  rating: number,
+  ratingVoteCount: number,
+  posterUrl: string,
+  posterUrlPreview: string
+}
+
+export interface ISimilar{
+  filmId: number,
+  nameRu: string,
+  nameEn: string
+  nameOriginal: string
+  posterUrl: string,
+  posterUrlPreview: string,
+  relationType: string
 }

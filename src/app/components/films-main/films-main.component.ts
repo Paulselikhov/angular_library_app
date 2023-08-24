@@ -4,6 +4,7 @@ import { pageCalc, throttle } from 'src/app/common/utils';
 import { LazyLoadEvent } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Router } from '@angular/router';
+import { IFilm, IFilms, ITopFilms } from '../model/films.model';
 
 @Component({
   selector: 'app-films-main',
@@ -18,7 +19,7 @@ export class FilmsMainComponent {
   public isAboutFilmShow: boolean = false
   public isListboxShow: boolean = false
 
-  public tableData: any[] = []
+  public tableData: ITopFilms[] = []
   public cols: { header: string }[] = [
     { header: '№'},
     { header: 'Постер'},
@@ -31,17 +32,15 @@ export class FilmsMainComponent {
   ]
   
   public selectedTopFilm: { id: string, name: string} = {id: 'TOP_250_BEST_FILMS', name: 'Топ лучших фильмов'}
-  public topFilmMenuItems: any[] = [
+  public topFilmMenuItems: {id:string, name:string}[] = [
     {id: 'TOP_100_POPULAR_FILMS', name: 'Топ популярных фильмов'},
     {id: 'TOP_250_BEST_FILMS', name: 'Топ лучших фильмов'},
     {id: 'TOP_AWAIT_FILMS', name: 'Топ ожидаемых фильмов'},
   ]
 
-  public searchFilmItems: any[] = []
+  public searchFilmItems: IFilms[] = []
   public searchFilmValue: string = ''
-  public selectedSearchFilm: any
-
-  public selectedFilm: any
+  public selectedSearchFilm!: IFilm
   
   constructor(
     private filmsService: FilmsService,

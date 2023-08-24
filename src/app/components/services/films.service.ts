@@ -31,4 +31,8 @@ export class FilmsService {
     getFilmById(id:number): Observable<any> {
         return this.http.get(`${this.url}/${id}`, {headers: this.headers})
     }
+
+    getSimilarsById(id:number): Observable<any> {
+        return this.http.get(`${this.url}/${id}/similars`, {headers: this.headers})
+    }
 }

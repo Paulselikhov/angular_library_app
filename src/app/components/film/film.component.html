@@ -1,5 +1,5 @@
 
-<div class="film" [style]="{'background': 'url('+data.coverUrl+') 200px 0/cover no-repeat'}">
+<div class="film" [style.background]="data.coverUrl ? 'url('+data.coverUrl+') 300px 0/cover no-repeat fixed' : 'url('+data.posterUrl+') 200px 0/cover no-repeat'">
     <div class="film_shadow">
         <div class="film_content p-top content_size">
             <div>
@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="film_description p-top content_size">
-      <p class="fst">Смотри {{data.nameRu}} на Richbee Shows</p>
+      <p class="fst">Смотри {{data.nameRu}} на Кинопоиск</p>
       <p class="fsd">{{data.description}}</p>
       <div class="description_similars">
         <div class="similars_title fst">Также может понравиться</div>

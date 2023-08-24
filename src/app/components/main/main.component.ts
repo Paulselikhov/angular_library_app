@@ -14,7 +14,7 @@ export class MainComponent {
   @ViewChild(Table) dt!: Table
   public kinopoiskId!: number
 
-  public isTableShow: boolean = false
+  public isTableShow: boolean = true
   public isAboutFilmShow: boolean = false
   public isListboxShow: boolean = false
 
@@ -30,7 +30,7 @@ export class MainComponent {
     { header: 'Рейтинг'},
   ]
   
-  public selectedTopFilm!: { id: string, name: string}
+  public selectedTopFilm: { id: string, name: string} = {id: 'TOP_250_BEST_FILMS', name: 'Топ лучших фильмов'}
   public topFilmMenuItems: any[] = [
     {id: 'TOP_100_POPULAR_FILMS', name: 'Топ популярных фильмов'},
     {id: 'TOP_250_BEST_FILMS', name: 'Топ лучших фильмов'},
@@ -55,6 +55,7 @@ export class MainComponent {
 
     //Сброс значения для топ. фильмов
     this.selectedTopFilm = { id: '', name: ''}
+    window.scroll(0, 0)
     //Обновляем id
     this.kinopoiskId = e.data.filmId
   }

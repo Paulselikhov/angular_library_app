@@ -25,8 +25,32 @@
       <p class="fsd">{{data.description}}</p>
       <div class="description_similars">
         <div class="similars_title fst">Также может понравиться</div>
-        <div class="similars__list">
-            <div class="notfound fsd">К сожалению похожих фильмов не найдено :(</div>
+          <div class="similars__list">
+            <ng-container *ngFor="let similar of similarFilteredItems" >
+              <div (click)="updateForm(similar.kinopoiskId)" class="similar_style" >
+                <div [style]="{'background': 'url('+similar.posterUrl+') 0 0/cover no-repeat'}">
+                  <div>
+                    <div>
+                      <div>
+                        {{similar.nameRu}}
+                      </div>
+                      <div>
+                        {{similar.genres[0].genre}}
+                      </div>
+                      <div>
+                          {{similar.shortDescription}}
+                      </div>
+                    </div>
+                    <p>
+                      IMDb {{similar.ratingImdb}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ng-container> 
+            <ng-container *ngIf="!similarFilteredItems[0]" >
+              <div class="notfound fsd">К сожалению похожих фильмов не найдено :(</div>
+            </ng-container>
         </div>
       </div>
     </div>

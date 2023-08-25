@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, map } from "rxjs";
 import { IFilm, IFilms, ISimilar, ITopFilms } from "../model/films.model";
 
 @Injectable({ 
@@ -24,6 +24,12 @@ export class FilmsService {
     getFilms(query:{keyword:string}): Observable<{total: number, totalPages: number, items: IFilms[]}> {
         const {keyword} = query
         return this.http.get<{total: number, totalPages: number, items: IFilms[]}>(`${this.url}?ratingFrom=5&keyword=${keyword}`, {headers: this.headers})
+            .pipe( 
+                map( (next) => {
+                    next.items = next.items.filter( i => i.ratingImdb && i.nameRu && i.year && i.ratingKinopoisk && i.type != 'TV_SHOW')
+                    return next
+                })
+            )
     }
 
     getFilmById(id:number): Observable<IFilm> {

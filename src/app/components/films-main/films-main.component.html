@@ -55,7 +55,7 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-data let-columns="columns">
                         <tr [pSelectableRow]="data" class="ff">
-                            <td class="size">{{data.index}}</td>
+                            <td class="size" style="font-weight: 600;">{{data.index}}</td>
                             <td class="size"><img [src]="data.posterUrlPreview" alt="" style="vertical-align: middle; border-radius: 10px; box-shadow: 1px 1px 6px #090244; max-width: 100px;"></td>
                             <td class="size">{{ data.nameRu }}</td>
                             <td class="size"><span *ngFor="let g of data.genres">{{g.genre}} </span></td>

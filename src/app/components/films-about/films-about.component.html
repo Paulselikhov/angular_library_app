@@ -8,7 +8,11 @@
                   <span>IMDb {{data.ratingImdb}}</span>
                   <span>Кинопоиск {{data.ratingKinopoisk}}</span>
                   <span>{{data.genres[0].genre}}&nbsp;&nbsp;&nbsp;|</span>
-                  <span>&nbsp;&nbsp;&nbsp;{{data.type}}&nbsp;&nbsp;&nbsp;|</span>
+                  <span>&nbsp;&nbsp;&nbsp;{{
+                    data.type === 'FILM' ? 'фильм' : 
+                    (data.type === 'MINI_SERIES' ? 'мини-сериал' : 
+                    (data.type === 'TV_SERIES' ? 'сериал' : data.type))
+                  }}&nbsp;&nbsp;&nbsp;|</span>
                   <span>&nbsp;&nbsp;&nbsp;{{data.year}}</span>
                 </div>
             </div>

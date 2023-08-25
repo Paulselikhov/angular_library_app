@@ -26,7 +26,7 @@ export class FilmsService {
         return this.http.get<{total: number, totalPages: number, items: IFilms[]}>(`${this.url}?ratingFrom=5&keyword=${keyword}`, {headers: this.headers})
             .pipe( 
                 map( (next) => {
-                    next.items = next.items.filter( i => i.ratingImdb && i.nameRu && i.year && i.ratingKinopoisk && i.type != 'TV_SHOW')
+                    next.items = next.items.filter( i => i.ratingImdb && i.nameRu && i.year && i.ratingKinopoisk && i.type != 'TV_SHOW' && i.type != 'VIDEO') 
                     return next
                 })
             )

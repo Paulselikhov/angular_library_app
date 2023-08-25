@@ -7,14 +7,14 @@
                 <p-listbox [options]="searchFilmItems" [(ngModel)]="selectedSearchFilm" (ngModelChange)="onSearchedFilmClick($event)" optionLabel="name" [listStyle]="{ 'max-height': '250px' }">
                     <ng-template let-film pTemplate="item">
                         <div class="film_searcher_items">
-                            <img class="p1-right" [src]="film.posterUrlPreview" style="max-width: 70px"/>
-                            <div class="p1-right">
-                                <div >{{ film.nameRu }}</div>
+                            <img [src]="film.posterUrlPreview" style="max-width: 140px"/>
+                            <div>
+                                <div style="font-weight: 600; font-size: 1.2em; padding-bottom: 5px;">{{ film.nameRu }}</div>
                                 <div>Год выпуска: {{ film.year }}</div>
                                 <div>Cтрана: <span *ngFor="let i of film.countries">{{i.country}} </span></div>
                                 <div>Жанр: <span *ngFor="let i of film.genres">{{i.genre}} </span></div>
-                                <div>Рейтинг Кинопоиска: {{ film.ratingKinopoisk }} </div>
-                                <div>Рейтинг Imdb: {{ film.ratingImdb }}</div>
+                                <div>Рейтинг Кинопоиска: <span style="color: #fc4d08; font-weight: 600;">{{ film.ratingKinopoisk }}</span></div>
+                                <div>Рейтинг Imdb: <span style="color: #fc4d08; font-weight: 600;">{{ film.ratingImdb }}</span></div>
                             </div>
                         </div>
                     </ng-template>

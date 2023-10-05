@@ -1,0 +1,61 @@
+.main{
+    .header{
+        background-color: black;
+        min-height: 12vh;
+        padding-top: 1%; 
+        .header_content{
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    .content{
+        min-height: 88vh;
+
+        .size{
+            padding: 20px; 
+            font-size: 20px;
+        }
+    }
+}
+
+//Рейтинг
+.rating_span{
+    background-color: #fccf08;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px #afb8eb;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 60px;
+}
+
+
+
+//Поиск фильмов
+.film_searcher{
+    position: relative;
+    .listbox{
+        position: absolute;
+        z-index: 1;
+    }
+    .w500{
+        width: 500px;
+    }
+}
+.film_searcher_items{
+    display: flex;
+    width: 100%;
+    
+    line-height: 25px;
+    img{
+        border-radius: 10px; 
+        box-shadow: 1px 1px 6px #090244;
+        margin-right: 20px;
+    }
+    div{
+        
+    }
+}
+

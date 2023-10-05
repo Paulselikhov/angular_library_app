@@ -106,7 +106,13 @@ export class FilmsMainComponent {
 
 
 
-
+  test(){
+    this.filmsService.updateValue()
+    this.filmsService.updateValue()
+    this.filmsService.updateValue()
+    this.filmsService.updateValue()
+    this.router.navigate(['test'])
+  }
 
 
 

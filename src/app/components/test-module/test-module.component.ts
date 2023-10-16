@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewChild } from '@angular/core';
 import { FilmsService } from '../services/films.service';
 import { pageCalc, throttle } from 'src/app/common/utils';
 import { LazyLoadEvent } from 'primeng/api';
@@ -8,7 +8,11 @@ import { IFilm, IFilms, ITopFilms } from '../model/films.model';
 
 @Component({
   selector: 'app-test-module',
-  templateUrl: './test-module.component.html',
+  template: `
+    <h1>Hello {{nameOjb.name}}!</h1>
+    {{runChangeDetection}}
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./test-module.component.scss', '../../app.component.scss'],
   //providers: [FilmsService],
 })
@@ -18,12 +22,10 @@ export class TestModuleComponent {
     private router: Router,
   ) {}
   
-    test(){
-      this.filmsService.updateValue()
-    }
+    @Input() nameOjb:{name:string} = {name: ''};
 
-    test2(){
-      this.router.navigate(['test2'])
-      
+    get runChangeDetection() {
+      console.log('Checking the view');
+      return true;
     }
   }

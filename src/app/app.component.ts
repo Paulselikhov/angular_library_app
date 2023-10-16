@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular_lib';
+  titleOjb: {name: string} = {name: 'popa'};
+
+  onClick() {
+    this.titleOjb.name = 'zhopa'
+  }
 }

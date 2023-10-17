@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template:`
-  <app-test-module [nameOjb]="titleOjb"></app-test-module>
+  <ng-content></ng-content>
+  <!-- <app-test-module [nameOjb]="titleOjb"></app-test-module> -->
   <button (click)="onClick()">Trigger change detection</button>
   `,
   styleUrls: ['./app.component.scss']

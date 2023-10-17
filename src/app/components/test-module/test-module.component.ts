@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
 import { FilmsService } from '../services/films.service';
 import { pageCalc, throttle } from 'src/app/common/utils';
 import { LazyLoadEvent } from 'primeng/api';
@@ -23,21 +23,21 @@ export class TestModuleComponent {
   constructor(
     private filmsService: FilmsService,
     private router: Router,
+    private changedetector: ChangeDetectorRef,
   ) {
-    this.count = 1
-    setTimeout(() => this.count = 5, 0);
+    this.count = 1 //ChangeDetection сработает 
 
-    //setInterval(() => this.count = 5, 100);
+    setTimeout(() => this.count = 5, 0); //ChangeDetection не сработает
 
-    Promise.resolve().then(() => this.count = 5); 
+    //setInterval(() => this.count = 5, 100); //ChangeDetection не сработает
 
-    this.filmsService.getFilmById(1).subscribe(res => {
-      this.count = 10
+    Promise.resolve().then(() => this.count = 5);  //ChangeDetection не сработает
+
+    this.filmsService.getFilmById(1000).subscribe(res => {
+      this.count = 10 //ChangeDetection не сработает
+      this.changedetector.detectChanges()
     })
 
-    // this.http.get('https://count.com').subscribe(res => {
-    //   this.count = res;
-    // });
   }
   
     @Input() nameOjb:{name:string} = {name: ''};

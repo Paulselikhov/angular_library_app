@@ -6,6 +6,7 @@ import { TestModule } from './components/test-module/test-module';
 import { TestModuleComponent } from './components/test-module/test-module.component';
 import { FilmsService } from './components/services/films.service';
 import { TestModule2 } from './components/test-module2/test-module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -15,6 +16,9 @@ import { TestModule2 } from './components/test-module2/test-module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
     TestModule,
     TestModule2,
   ],

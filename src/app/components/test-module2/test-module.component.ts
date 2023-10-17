@@ -19,6 +19,6 @@ export class TestModule2Component {
   ) {}
   
     test(){
-      this.filmsService.updateValue()
+      //this.filmsService.updateValue()
     }
   }

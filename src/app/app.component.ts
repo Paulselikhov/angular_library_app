@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template:`
+  <app-test-module [nameOjb]="titleOjb"></app-test-module>
+  <button (click)="onClick()">Trigger change detection</button>
+  `,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {

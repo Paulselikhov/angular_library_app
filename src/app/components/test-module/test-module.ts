@@ -8,5 +8,6 @@ import { FilmsService } from "../services/films.service";
     ],
     imports: [],
     providers: [FilmsService],
+    exports:[TestModuleComponent]
   })
   export class TestModule { }

@@ -7,6 +7,7 @@ import { FilmsService } from "../services/films.service";
         TestModule2Component,
     ],
     imports: [],
+    exports: [TestModule2Component],
     providers: [FilmsService],
   })
   export class TestModule2 { }

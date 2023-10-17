@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { IFilm, IFilms, ITopFilms } from '../model/films.model';
 
 @Component({
-  selector: 'app-test-module',
+  selector: 'app-test-module2',
   templateUrl: './test-module.component.html',
   styleUrls: ['./test-module.component.scss', '../../app.component.scss'],
   //providers: [FilmsService],

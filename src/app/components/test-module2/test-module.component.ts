@@ -22,7 +22,16 @@ export class TestModule2Component {
             (name && name.trim()) || '<no name set>';
     }
     private _name = '';
+
     
-  constructor(){}
+  constructor(){
+    
+  }
+
+  get runChangeDetection() {
+    return true;
+  }
+
+  test(){}
   
 }

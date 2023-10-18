@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { FilmsService } from '../services/films.service';
 import { pageCalc, throttle } from 'src/app/common/utils';
 import { LazyLoadEvent } from 'primeng/api';
@@ -7,18 +7,22 @@ import { Router } from '@angular/router';
 import { IFilm, IFilms, ITopFilms } from '../model/films.model';
 
 @Component({
-  selector: 'app-test-module',
+  selector: 'app-test-module2',
   templateUrl: './test-module.component.html',
   styleUrls: ['./test-module.component.scss', '../../app.component.scss'],
   //providers: [FilmsService],
 })
 export class TestModule2Component {
-  constructor(
-    private filmsService: FilmsService,
-    private router: Router,
-  ) {}
-  
-    test(){
-      this.filmsService.updateValue()
+  @Input()
+    get name(): string {
+        return this._name;
     }
-  }
+    set name(name: string) {
+        this._name =
+            (name && name.trim()) || '<no name set>';
+    }
+    private _name = '';
+    
+  constructor(){}
+  
+}

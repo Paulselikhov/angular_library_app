@@ -1,5 +1,6 @@
 
 import { Injectable } from "@angular/core";
+import { TestModule } from "../test-module/test-module";
 
 @Injectable({
     providedIn: 'root',

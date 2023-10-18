@@ -1,12 +1,13 @@
 import { NgModule } from "@angular/core";
 import { TestModule2Component } from "./test-module.component";
-import { FilmsService } from "../services/films.service";
+
 
 @NgModule({
     declarations: [
         TestModule2Component,
     ],
     imports: [],
-    providers: [FilmsService],
+    providers: [],
+    exports: [TestModule2Component]
   })
   export class TestModule2 { }

@@ -1,7 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 @Component({
   selector: 'app-test-module',
-  template: `<app-test-module2 [name]='name'></app-test-module2>`,
+  template: `
+  <button (click)="child.test()">Кнопка родителя {{child.name}}</button>
+
+  <app-test-module2 [name]='name' #child></app-test-module2>
+  `,
   styleUrls: ['./test-module.component.scss', '../../app.component.scss'],
   //providers: [FilmsService],
 })

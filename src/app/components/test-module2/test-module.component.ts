@@ -32,6 +32,8 @@ export class TestModule2Component {
     return true;
   }
 
-  test(){}
+  test(){
+    alert('Вызвал метод дочернего элемента')
+  }
   
 }

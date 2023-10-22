@@ -5,6 +5,7 @@ import { LazyLoadEvent } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Router } from '@angular/router';
 import { IFilm, IFilms, ITopFilms } from '../model/films.model';
+import { Subscription, interval, map, scan, take } from 'rxjs';
 
 @Component({
   selector: 'app-test-module',
@@ -18,9 +19,15 @@ export class TestModuleComponent {
     private router: Router,
   ) {
   }
-  
+    private subscriptions: Subscription[] = [];
+    myArray:any = []
     rxJs(){
-      
+      interval(500) // 0,5 секунды
+      .pipe(
+        take(10), // остановится на 9 
+      ).subscribe( res => {
+        console.log(res)
+      }, (error) => {}, () => alert('rxJs закончил работу!') )
     }
 
     addListener(){
@@ -34,12 +41,15 @@ export class TestModuleComponent {
       console.log('mousemove')
     }
 
+    removeSubscribtions(){
+      this.subscriptions.forEach((s) => {
+        console.log(`Подписка:${s} удалена!`)
+        s.unsubscribe()
+      })
+    }
 
-
-
-    test2(){
-      this.router.navigate(['test2'])
-      
+    addSubscribtion(){
+      //this.subscriptions.push()
     }
 
     

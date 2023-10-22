@@ -16,14 +16,31 @@ export class TestModuleComponent {
   constructor(
     private filmsService: FilmsService,
     private router: Router,
-  ) {}
+  ) {
+  }
   
-    test(){
-      this.filmsService.updateValue()
+    rxJs(){
+      
     }
+
+    addListener(){
+      document.addEventListener( 'mousemove', this.consoleLog)
+      //this.filmsService.updateValue()
+    }
+    removeListener(){
+      document.removeEventListener('mousemove', this.consoleLog)
+    }
+    consoleLog(){
+      console.log('mousemove')
+    }
+
+
+
 
     test2(){
       this.router.navigate(['test2'])
       
     }
+
+    
   }

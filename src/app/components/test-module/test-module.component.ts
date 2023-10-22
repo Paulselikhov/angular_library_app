@@ -5,7 +5,7 @@ import { LazyLoadEvent } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Router } from '@angular/router';
 import { IFilm, IFilms, ITopFilms } from '../model/films.model';
-import { Subscription, interval, map, scan, take, of, from, Observable, fromEvent } from 'rxjs';
+import { Subscription, interval, map, scan, take, of, from, Observable, fromEvent, timer, range } from 'rxjs';
 
 @Component({
   selector: 'app-test-module',
@@ -107,5 +107,14 @@ export class TestModuleComponent {
       this.fromEventSubscribtion.unsubscribe()
     }
 
+
+    //Таймер
+    rxJsTimer(){
+      timer(2500).subscribe( v => console.log(v)) // Через 2,5 секунды выпустит значение 0 (аналог сетТаймаута)
+    }
+
+    rxJsRange(){
+      range(42, 10).subscribe( v => console.log(v)) // C 42 элемента покажет 10 элементов 
+    }
     
   }

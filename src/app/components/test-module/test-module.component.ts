@@ -5,7 +5,7 @@ import { LazyLoadEvent } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Router } from '@angular/router';
 import { IFilm, IFilms, ITopFilms } from '../model/films.model';
-import { Subscription, interval, map, scan, take, of, from, Observable } from 'rxjs';
+import { Subscription, interval, map, scan, take, of, from, Observable, fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-test-module',
@@ -14,6 +14,8 @@ import { Subscription, interval, map, scan, take, of, from, Observable } from 'r
   //providers: [FilmsService],
 })
 export class TestModuleComponent {
+
+  public fromEventSubscribtion: any
   constructor(
     private filmsService: FilmsService,
     private router: Router,
@@ -71,27 +73,38 @@ export class TestModuleComponent {
       // })
 
 
-      const stream3$ = new Observable( observer => {
-        observer.next('First value')
-        setTimeout( () => observer.next('After 1000ms'), 1000)
-        setTimeout( () => observer.error('Ошибка обработана в подписке!'), 1000)
-        setTimeout( () => observer.next('After 1000ms'), 2000)
-        setTimeout( () => observer.complete(), 3000)
-      })
+      // const stream3$ = new Observable( observer => {
+      //   observer.next('First value')
+      //   setTimeout( () => observer.next('After 1000ms'), 1000)
+      //   setTimeout( () => observer.error('Ошибка обработана в подписке!'), 1000)
+      //   setTimeout( () => observer.next('After 1000ms'), 2000)
+      //   setTimeout( () => observer.complete(), 3000)
+      // })
       //stream3$.subscribe( val => console.log(val), (error) => console.log(error), () => console.log('complete') )
 
       //Альтернативная запись той, что выше
-      stream3$.subscribe({
-        next(val) {
-          console.log(val)
-        },
-        error(err){
-          console.log(err)
-        },
-        complete(){
-          console.log('complete')
-        }
-      })
+      // stream3$.subscribe({
+      //   next(val) {
+      //     console.log(val)
+      //   },
+      //   error(err){
+      //     console.log(err)
+      //   },
+      //   complete(){
+      //     console.log('complete')
+      //   }
+      // })
+
+
+      
+    }
+
+    addRxJsListener(){
+      //Метод fromEvent
+      this.fromEventSubscribtion = fromEvent(document,'mousemove').subscribe( event => console.log(event))
+    }
+    removeRxJsListener(){
+      this.fromEventSubscribtion.unsubscribe()
     }
 
     

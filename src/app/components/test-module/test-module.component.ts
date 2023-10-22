@@ -5,7 +5,7 @@ import { LazyLoadEvent } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Router } from '@angular/router';
 import { IFilm, IFilms, ITopFilms } from '../model/films.model';
-import { Subscription, interval, map, scan, take } from 'rxjs';
+import { Subscription, interval, map, scan, take, of, from, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-test-module',
@@ -18,6 +18,8 @@ export class TestModuleComponent {
     private filmsService: FilmsService,
     private router: Router,
   ) {
+        
+
   }
     private subscriptions: Subscription[] = [];
     myArray:any = []
@@ -50,6 +52,46 @@ export class TestModuleComponent {
 
     addSubscribtion(){
       //this.subscriptions.push()
+    }
+
+
+    //СОЗДАНИЕ СТРИМА
+    createStream(){
+      // const stream$ = of(1, 2, 3) // Знак доллара указывает на то, что переменная - реактивная
+      // stream$.subscribe( val => {
+      //   console.log(val)
+      // })
+
+
+      // const stream2$ = from(['value1', 'value2']) // То-же самое, что и of, только передаём аргументов - массив
+      // stream2$.pipe( 
+      //   scan( (acc, v:any) => acc.concat(v), [])) // Метод arr.concat создаёт новый массив, в который копирует данные из других массивов и дополнительные значения
+      // .subscribe( val => {
+      //   console.log(val)
+      // })
+
+
+      const stream3$ = new Observable( observer => {
+        observer.next('First value')
+        setTimeout( () => observer.next('After 1000ms'), 1000)
+        setTimeout( () => observer.error('Ошибка обработана в подписке!'), 1000)
+        setTimeout( () => observer.next('After 1000ms'), 2000)
+        setTimeout( () => observer.complete(), 3000)
+      })
+      //stream3$.subscribe( val => console.log(val), (error) => console.log(error), () => console.log('complete') )
+
+      //Альтернативная запись той, что выше
+      stream3$.subscribe({
+        next(val) {
+          console.log(val)
+        },
+        error(err){
+          console.log(err)
+        },
+        complete(){
+          console.log('complete')
+        }
+      })
     }
 
     

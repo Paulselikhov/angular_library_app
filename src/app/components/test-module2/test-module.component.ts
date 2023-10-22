@@ -32,6 +32,10 @@ export class TestModule2Component {
     return true;
   }
 
+  test2(){
+    return 'viewChild'
+  }
+
   test(){
     alert('Вызвал метод дочернего элемента')
   }

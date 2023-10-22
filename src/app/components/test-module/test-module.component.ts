@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { TestModule2Component } from '../test-module2/test-module.component';
 @Component({
   selector: 'app-test-module',
   template: `
@@ -9,7 +10,17 @@ import { Component, ViewChild } from '@angular/core';
   styleUrls: ['./test-module.component.scss', '../../app.component.scss'],
   //providers: [FilmsService],
 })
-export class TestModuleComponent {
+export class TestModuleComponent implements AfterViewInit {
+  @ViewChild(TestModule2Component)
+  
+  private timerComponent!: TestModule2Component;
+
   public name = ''
-  constructor() {}
+  constructor() {
+    
+  }
+
+  ngAfterViewInit(){
+    console.log(this.timerComponent.test2())
+  }
   }

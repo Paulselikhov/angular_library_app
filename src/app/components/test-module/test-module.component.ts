@@ -5,7 +5,7 @@ import { LazyLoadEvent } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Router } from '@angular/router';
 import { IFilm, IFilms, ITopFilms } from '../model/films.model';
-import { Subscription, interval, map, scan, take, of, from, Observable, fromEvent, timer, range } from 'rxjs';
+import { Subscription, interval, map, scan, take, of, from, Observable, fromEvent, timer, range, Subject, BehaviorSubject, ReplaySubject } from 'rxjs';
 
 @Component({
   selector: 'app-test-module',
@@ -80,8 +80,7 @@ export class TestModuleComponent {
       //   setTimeout( () => observer.next('After 1000ms'), 2000)
       //   setTimeout( () => observer.complete(), 3000)
       // })
-      //stream3$.subscribe( val => console.log(val), (error) => console.log(error), () => console.log('complete') )
-
+      // stream3$.subscribe( val => console.log(val), (error) => console.log(error), () => console.log('complete') )
       //Альтернативная запись той, что выше
       // stream3$.subscribe({
       //   next(val) {
@@ -116,5 +115,35 @@ export class TestModuleComponent {
     rxJsRange(){
       range(42, 10).subscribe( v => console.log(v)) // C 42 элемента покажет 10 элементов 
     }
-    
+
+
+
+    //Сабжекты - тот же самый observable, с тем отличием, что мы дёргаем(эммитим) методы next,error,complete не внутри класса, а снаружи
+    //В observable мы эмитили события внутри класса, а потом просто подписывались на стрим
+
+    subjects(){
+      const stream$ = new Subject() // Здесь мы создали стрим, но внутри ничего не эмиттим
+      stream$.next('Subject не работает') // Cначала нужно подписаться!!!!!
+      //stream$.subscribe( v => console.log('Value', v))
+      stream$.next('Subject работает')
+      stream$.complete()
+      stream$.next('Subject не работает') // Сработал метод complete. subject завершил работу
+
+
+      //BehaviorSubject
+      const stream2$ = new BehaviorSubject('Im FIRsT VaLUee!!')
+      stream2$.next('Subject работает1')
+      stream2$.next('Subject работает2')
+      stream2$.next('Subject работает3') // Выведется это сообщение, потому что пока мы не подписались, мы меняим firstValue
+      //stream2$.subscribe( v => console.log('Value:', v))
+
+      //ReplaySubject - способен воспроизвести то, что было до этого (то что мы диспатчили)
+      const stream3$ = new ReplaySubject(1) // Можем создавать данный стрим с пустыми параметрами или указать значение буффера (запомнит одно последнее значение )
+      stream3$.next('Subject работает1')
+      stream3$.next('Subject работает2')
+      stream3$.next('Subject работает3')
+      stream3$.subscribe( v => console.log('Value:', v))
+      //Выведутся все значения, которые мы диспатчили
+      
+    }
   }
